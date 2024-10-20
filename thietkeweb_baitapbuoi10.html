@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý công việc nâng cao</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #ff9800;
+}
+
+.task-manager {
+    width: 80%;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.input-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+input, button, select {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+input {
+    flex: 1 1 18%; /* Đặt chiều rộng cho các ô nhập liệu */
+    min-width: 120px; /* Đảm bảo các ô nhập có kích thước tối thiểu */
+}
+
+button {
+    background-color: #ff9800;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffb74d;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.list-container {
+    max-height: 200px; /* Giới hạn chiều cao của khung danh sách */
+    overflow-y: auto; /* Thêm thanh cuộn dọc nếu danh sách quá dài */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #eee;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+li.selected {
+    background-color: #ffeb3b;
+}
+
+li.pinned {
+    background-color: #90caf9;
+    color: #fff;
+    font-weight: bold;
+}
+  /* Thiết lập cho menu chính */
+  .main-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu > li {
+            background-color: #005bb5;
+            color: #fff;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        /* Thiết lập cho menu phụ */
+        .dropdown-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+        }
+
+        .dropdown-menu li {
+            background-color: #fafafa;
+            color: #333;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #dcdcdc;
+        }
+</style>
+</head>
+<body>
+    <h1>Quản lý thông tin cá nhân</h1>
+    <div class="task-manager">
+        <div class="input-section">
+            <input type="text" id="id-input" placeholder="ID">
+            <input type="text" id="name-input" placeholder="Tên">
+            <input type="date" id="dob-input" placeholder="Ngày sinh">
+            <input type="text" id="task-input" placeholder="Công việc">
+            <input type="text" id="contact-input" placeholder="Liên lạc">
+        </div>
+        <div class="controls">
+            <button onclick="addPerson()">Thêm</button>
+            <button onclick="pinTask()">Ghim công việc</button>
+            <button onclick="cancelPinTask()">Huỷ ghim công việc</button>
+            <button onclick="removePerson()">Xóa mục đã chọn</button>
+            <select id="sort-options" onchange="sortList()">
+                <option value="id">Sắp xếp theo ID</option>
+                <option value="name">Sắp xếp theo Tên</option>
+            </select>
+        </div>
+        <div class="list-container">
+            <ul id="person-list"></ul>
+        </div>
+        <p id="status-message"></p>
+    </div>
+    <ul class="main-menu">
+        <li onclick="toggleDropdown()">Lập trình web
+            <ul class="dropdown-menu" id="dropdownMenu">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdownMenu");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
